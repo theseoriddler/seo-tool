@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
   "name": "SERP Feature Analyzer",
-  "version": "1.0.0",
-  "description": "Analyzes Google search results and shows a pie chart of SERP feature space distribution.",
-  "permissions": ["activeTab"],
+  "version": "2.0.0",
+  "description": "Analyzes Google search results using SerpAPI and shows a pie chart of SERP feature distribution.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://serpapi.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -12,6 +13,7 @@
       "128": "icons/icon128.png"
     }
   },
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": [

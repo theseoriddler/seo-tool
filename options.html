@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SERP Analyzer Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+    .card {
+      background: #16213e;
+      border-radius: 10px;
+      padding: 28px;
+      width: 100%;
+      max-width: 420px;
+    }
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #ccc;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #0f1a30;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #7c3aed;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    button {
+      padding: 9px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #save {
+      background: #7c3aed;
+      color: #fff;
+    }
+    #save:hover { background: #6d28d9; }
+    #clear {
+      background: #333;
+      color: #ccc;
+    }
+    #clear:hover { background: #444; }
+    #status {
+      margin-top: 14px;
+      font-size: 13px;
+      min-height: 20px;
+    }
+    .success { color: #22c55e; }
+    .error { color: #ef4444; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>SERP Feature Analyzer Settings</h1>
+    <label for="apikey">SerpAPI Key</label>
+    <input type="text" id="apikey" placeholder="Enter your SerpAPI key" autocomplete="off" />
+    <div class="actions">
+      <button id="save">Save</button>
+      <button id="clear">Clear</button>
+    </div>
+    <div id="status"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
