@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SERP Analyzer</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>SERP Feature Analyzer</h1>
+    <div id="error" class="error hidden"></div>
+    <div id="chart-area" class="hidden">
+      <svg id="pie" viewBox="-1.2 -1.2 2.4 2.4" width="220" height="220"></svg>
+      <ul id="legend"></ul>
+    </div>
+    <div id="loading" class="hidden">Analyzing SERP...</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
