@@ -311,45 +311,54 @@
 
       loadingEl.classList.remove("hidden");
 
-      // Get page headings from content script
-      chrome.tabs.sendMessage(tab.id, { type: "DETECT_HEADINGS" }, (headingResponse) => {
-        const headings = (headingResponse && headingResponse.success)
-          ? headingResponse.headings
-          : {};
+      // Inject content script first, then request headings
+      chrome.scripting.executeScript(
+        { target: { tabId: tab.id }, files: ["content.js"] },
+        () => {
+          if (chrome.runtime.lastError) { /* ignore injection errors */ }
 
-        console.log("Page headings:", headings);
+          chrome.tabs.sendMessage(tab.id, { type: "DETECT_HEADINGS" }, (headingResponse) => {
+            if (chrome.runtime.lastError) { /* ignore */ }
 
-        const apiUrl =
-          "https://serpapi.com/search.json?" +
-          new URLSearchParams({
-            q: query,
-            api_key: apiKey,
-            engine: "google",
-            hl: "en",
-          }).toString();
+            const headings = (headingResponse && headingResponse.success)
+              ? headingResponse.headings
+              : {};
 
-        fetch(apiUrl)
-          .then((res) => {
-            if (!res.ok) {
-              if (res.status === 401) throw new Error("Invalid API key. Check your settings.");
-              throw new Error("API error: " + res.status);
-            }
-            return res.json();
-          })
-          .then((json) => {
-            console.log("SerpAPI raw response:", json);
-            const counts = countResults(json, headings);
-            if (Object.keys(counts).length === 0) {
-              showError("No results found.");
-              return;
-            }
-            const pct = toPercentages(counts);
-            showChart(pct);
-          })
-          .catch((err) => {
-            showError(err.message || "Failed to fetch data.");
+
+
+            const apiUrl =
+              "https://serpapi.com/search.json?" +
+              new URLSearchParams({
+                q: query,
+                api_key: apiKey,
+                engine: "google",
+                hl: "en",
+              }).toString();
+
+            fetch(apiUrl)
+              .then((res) => {
+                if (!res.ok) {
+                  if (res.status === 401) throw new Error("Invalid API key. Check your settings.");
+                  throw new Error("API error: " + res.status);
+                }
+                return res.json();
+              })
+              .then((json) => {
+    
+                const counts = countResults(json, headings);
+                if (Object.keys(counts).length === 0) {
+                  showError("No results found.");
+                  return;
+                }
+                const pct = toPercentages(counts);
+                showChart(pct);
+              })
+              .catch((err) => {
+                showError(err.message || "Failed to fetch data.");
+              });
           });
-      });
+        }
+      );
     });
   });
 })();

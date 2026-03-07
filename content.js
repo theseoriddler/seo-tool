@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  // Prevent duplicate listeners if injected multiple times
+  if (window._serpAnalyzerLoaded) return;
+  window._serpAnalyzerLoaded = true;
+
   function detectHeadings() {
     const headings = document.querySelectorAll("h2, h3, span, [role='heading']");
     const found = {};
@@ -24,6 +28,5 @@
     if (msg.type === "DETECT_HEADINGS") {
       sendResponse({ success: true, headings: detectHeadings() });
     }
-    return true;
   });
 })();
