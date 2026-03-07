@@ -1,29 +1,33 @@
 # SERP Feature Analyzer
 
-A Chrome extension that analyzes Google search result pages and displays a pie chart showing how much visual space each SERP feature occupies.
+*Last updated: March 7, 2026*
+
+A Chrome extension that analyzes Google search result pages using SerpAPI and displays a pie chart showing the distribution of SERP features by result count.
 
 ## Features Detected
 
 - AI Overviews
-- Sponsored Ads (top & bottom)
-- Organic Results
-- People Also Ask (PAA)
+- Sponsored Ads
+- Shopping / Products
 - Knowledge Panel
 - Featured Snippet
-- Video Carousel
-- Shopping / Product Carousel
+- People Also Ask (PAA)
+- Videos
 - Image Pack
-- Local Pack (Maps)
+- Local Pack
+- Top Stories
 - Reddit / Forums
-- Other
+- Social Media
+- Organic Results
 
 ## How It Works
 
-1. Go to Google and search for anything
-2. Click the extension icon
-3. A pie chart shows the percentage of page space each feature takes up
+1. Add your SerpAPI key in the extension settings
+2. Go to Google and search for anything
+3. Click the extension icon
+4. A pie chart shows the percentage each feature represents based on result count
 
-Space is measured by **pixel height** across the **entire scrollable SERP**, giving an accurate picture of real visual dominance.
+The extension uses SerpAPI to get structured search result data, combined with on-page heading detection for accurate classification of features like Shopping and Local Pack.
 
 ## Install (Developer Mode)
 
@@ -31,4 +35,5 @@ Space is measured by **pixel height** across the **entire scrollable SERP**, giv
 2. Open `chrome://extensions/` in Chrome
 3. Enable **Developer mode** (top right)
 4. Click **Load unpacked** and select the project folder
-5. Navigate to a Google search page and click the extension icon
+5. Click the extension icon and open **Settings** to add your SerpAPI key
+6. Navigate to a Google search page and click the extension icon
