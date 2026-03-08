@@ -37,3 +37,5 @@ The extension uses SerpAPI to get structured search result data, combined with o
 4. Click **Load unpacked** and select the project folder
 5. Click the extension icon and open **Settings** to add your SerpAPI key
 6. Navigate to a Google search page and click the extension icon
+
+Privacy Policy: https://github.com/theseoriddler/seo-tool/blob/main/privacy-policy.md
